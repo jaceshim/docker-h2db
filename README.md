@@ -1,4 +1,5 @@
 ##H2 Version 1.4.193 beta Dockerfile
+
 ---
 
 This repository contains Dockerfile of H2.
@@ -9,4 +10,4 @@ dockerfile/java
 
 ###Usage
 
-    docker run -d -p 1521:1521 -p 81:81 jaceshim/h2
+    docker run -d -p 1521:1521 -p 81:81 jaceshim/h2db
