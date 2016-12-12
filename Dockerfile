@@ -3,7 +3,7 @@
 #
 
 # Pull base image.
-FROM dockerfile/java
+FROM java:7
 
 # Install H2
 RUN \

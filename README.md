@@ -4,7 +4,7 @@ This repository contains Dockerfile of H2.
 
 ###Dependencies
 
-dockerfile/java
+java:7
 
 ###Usage
 
