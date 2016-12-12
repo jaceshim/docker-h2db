@@ -1,16 +1,24 @@
-FROM java:7
+#
+# H2 Dockerfile
+#
 
-ENV DOWNLOAD http://www.h2database.com/h2-2016-10-31.zip
-ENV DATA_DIR /opt/h2-data
+# Pull base image.
+FROM dockerfile/java
 
-RUN curl ${DOWNLOAD} -o h2.zip \
-    && unzip h2.zip -d /opt/ \
-    && rm h2.zip \
-    && mkdir -p ${DATA_DIR}
+# Install H2
+RUN \
+  cd /tmp && \
+  wget http://www.h2database.com/h2-2016-10-31.zip && \
+  unzip h2-2016-10-31.zip && \
+  rm -f h2-2016-10-31.zip && \
+  mkdir -p /opt/h2 && \
+  mv /tmp/h2 /opt && \
+  mkdir -p /opt/h2-data
 
-EXPOSE 81 1521
+# Expose ports.
+#   - 1521: H2 Server
+#   -   81: H2 Console
+EXPOSE 1521 81
 
-CMD java -cp "/opt/h2/bin/*" org.h2.tools.Server \
- 	-web -webAllowOthers -webPort 81 \
- 	-tcp -tcpAllowOthers -tcpPort 1521 \
- 	-baseDir ${DATA_DIR}
+# Define default command
+CMD java -cp /opt/h2/bin/h2*.jar org.h2.tools.Server -web -webAllowOthers -webPort 81 -tcp -tcpAllowOthers -tcpPort 1521 -baseDir /opt/h2-data
