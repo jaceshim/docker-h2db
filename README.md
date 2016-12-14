@@ -8,4 +8,4 @@ java:7
 
 ###Usage
 
-    docker run -d -p 1521:1521 -p 81:81 jaceshim/h2db
+    docker run --name myh2db  -d -v /your_local_directory_path:/opt/h2-data -p 1521:1521 -p 81:81 jaceshim/h2db
